@@ -24,7 +24,8 @@ public class MainActivity extends Activity {
         seekNumber.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                editNumber.setText(String.valueOf(progress));
+                if(fromUser)
+                    editNumber.setText(String.valueOf(progress));
             }
 
             @Override
@@ -46,7 +47,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() > 0) {
+                /*if(s.length() > 0) {
                     int parsedVal = 0;
                     try {
                         parsedVal = Integer.parseInt(s.toString());
@@ -57,12 +58,27 @@ public class MainActivity extends Activity {
                     if(parsedVal >= 0 && parsedVal <= seekNumber.getMax()) {
                         seekNumber.setProgress(parsedVal);
                     }
-                }
+                }*/
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if(s.length() > 0) {
+                    int parsedVal = 0;
+                    try {
+                        parsedVal = Integer.parseInt(s.toString());
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "Você digitou um valor grande demais", Toast.LENGTH_SHORT).show();
+                    }
+//                    if(parsedVal >= seekNumber.getMin() && parsedVal <= seekNumber.getMax()) {
+                    if(parsedVal >= 1 && parsedVal <= seekNumber.getMax()) {
+                        seekNumber.setProgress(parsedVal);
+                    } else {
+                        seekNumber.setProgress(seekNumber.getMax());
+                    }
+                } else {
+                    seekNumber.setProgress(1);
+                }
             }
         });
     }
