@@ -41,28 +41,10 @@ public class MainActivity extends Activity {
 
         editNumber.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                /*if(s.length() > 0) {
-                    int parsedVal = 0;
-                    try {
-                        parsedVal = Integer.parseInt(s.toString());
-                    } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Você digitou um valor grande demais", Toast.LENGTH_SHORT).show();
-                    }
-//                    if(parsedVal >= seekNumber.getMin() && parsedVal <= seekNumber.getMax()) {
-                    if(parsedVal >= 0 && parsedVal <= seekNumber.getMax()) {
-                        seekNumber.setProgress(parsedVal);
-                    }
-                }*/
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
                 if(s.length() > 0) {
                     int parsedVal = 0;
                     try {
@@ -80,6 +62,9 @@ public class MainActivity extends Activity {
                     seekNumber.setProgress(1);
                 }
             }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
         });
     }
 }
