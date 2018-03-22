@@ -48,8 +48,8 @@ public class ControleAdapter extends ArrayAdapter {
         } else if(item.getValor() < 0) {
             textValor.setTextColor(Color.RED);
         }
-        item.setValor(Math.abs(item.getValor()));
-        textValor.setText(String.valueOf(item.getValor()));
+        double valor = Math.abs(item.getValor());
+        textValor.setText(String.valueOf(valor));
 
         return mView;
     }
